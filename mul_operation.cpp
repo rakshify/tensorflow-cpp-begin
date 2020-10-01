@@ -1,8 +1,9 @@
-
+#include<iostream>
 #include<vector>
 #include "operation.h"
 #include "tensor.h"
 
+using namespace std;
 
 template <typename T>
 Tensor<T>* MulOperation<T>::forward() {
@@ -20,4 +21,6 @@ void MulOperation<T>::backprop(vector<T> grad) {
 	this->one->backprop(gradOne);
 	this->two->backprop(gradTwo);
 }
+
+template class MulOperation<float>;
 

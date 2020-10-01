@@ -1,3 +1,5 @@
+#include<assert.h>
+#include<iostream>
 #include<vector>
 
 #include "operation.h"
@@ -22,7 +24,7 @@ void Tensor<T>::backprop(vector<T> grad) {
 	this->backOp->backprop(this->grad);
 }
 
-// Overload * operator to add two Tensor objects.
+// Overload * operator to multiply two Tensor objects.
 template <typename T>
 Tensor<T>* Tensor<T>::operator*(const Tensor<T>* two) {
 	this->frontOp = new MulOperation<T>(this, (Tensor<T>*)two);
@@ -35,4 +37,6 @@ Tensor<T>* Tensor<T>::operator+(const Tensor<T>* two) {
 	this->frontOp = new AddOperation<T>(this, (Tensor<T>*)two);
 	return this->forward();
 }
+
+template class Tensor<float>;
 
